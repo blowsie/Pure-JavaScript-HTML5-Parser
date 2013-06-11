@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Pure-javascript-html-parser : A Pure JavaScript HTML Parser, based on John Resig's http://ejohn.org/blog/pure-javascript-html-parser/" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Pure-javascript-html-parser</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/blowsie/Pure-JavaScript-HTML-Parser">View on GitHub</a>
+
+          <h1 id="project_title">Pure-javascript-html-parser</h1>
+          <h2 id="project_tagline">A Pure JavaScript HTML Parser, based on John Resig's http://ejohn.org/blog/pure-javascript-html-parser/</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/blowsie/Pure-JavaScript-HTML-Parser/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/blowsie/Pure-JavaScript-HTML-Parser/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="pure-javascript-html-parser" class="anchor" href="#pure-javascript-html-parser"><span class="octicon octicon-link"></span></a>Pure JavaScript HTML Parser</h1>
+
+<p>Credit goes to John Resig for his <a href="http://ejohn.org/blog/pure-javascript-html-parser/">code</a> written back in 2008.</p>
+
+<p>This code had been updated to fix several problems.</p>
+
+<h2>
+<a name="4-libraries-in-one" class="anchor" href="#4-libraries-in-one"><span class="octicon octicon-link"></span></a>4 Libraries in One!</h2>
+
+<h3>
+<a name="a-sax-style-api" class="anchor" href="#a-sax-style-api"><span class="octicon octicon-link"></span></a>A SAX-style API</h3>
+
+<p>Handles tag, text, and comments with callbacks. For example, let’s say you wanted to implement a simple HTML to XML serialization scheme – you could do so using the following:</p>
+
+<pre><code>var results = "";
+
+HTMLParser("&lt;p id=test&gt;hello &lt;i&gt;world", {
+  start: function( tag, attrs, unary ) {
+    results += "&lt;" + tag;
+
+    for ( var i = 0; i &lt; attrs.length; i++ )
+      results += " " + attrs[i].name + '="' + attrs[i].escaped + '"';
+
+    results += (unary ? "/" : "") + "&gt;";
+  },
+  end: function( tag ) {
+    results += "&lt;/" + tag + "&gt;";
+  },
+  chars: function( text ) {
+    results += text;
+  },
+  comment: function( text ) {
+    results += "&lt;!--" + text + "--&gt;";
+  }
+});
+
+results == '&lt;p id="test"&gt;hello &lt;i&gt;world&lt;/i&gt;&lt;/p&gt;"
+</code></pre>
+
+<h3>
+<a name="xml-serializer" class="anchor" href="#xml-serializer"><span class="octicon octicon-link"></span></a>XML Serializer</h3>
+
+<p>Now, there’s no need to worry about implementing the above, since it’s included directly in the library, as well. Just feed in HTML and it spits back an XML string.</p>
+
+<pre><code>var results = HTMLtoXML("&lt;p&gt;Data: &lt;input disabled&gt;")
+results == '&lt;p&gt;Data: &lt;input disabled="disabled"/&gt;&lt;/p&gt;'
+</code></pre>
+
+<h3>
+<a name="dom-builder" class="anchor" href="#dom-builder"><span class="octicon octicon-link"></span></a>DOM Builder</h3>
+
+<p>If you’re using the HTML parser to inject into an existing DOM document (or within an existing DOM element) then htmlparser.js provides a simple method for handling that:</p>
+
+<pre><code>// The following is appended into the document body
+HTMLtoDOM("&lt;p&gt;Hello &lt;b&gt;World", document)
+
+// The follow is appended into the specified element
+HTMLtoDOM("&lt;p&gt;Hello &lt;b&gt;World", document.getElementById("test"))
+</code></pre>
+
+<h3>
+<a name="dom-document-creator" class="anchor" href="#dom-document-creator"><span class="octicon octicon-link"></span></a>DOM Document Creator</h3>
+
+<p>This is a more-advanced version of the DOM builder – it includes logic for handling the overall structure of a web page, returning a new DOM document.</p>
+
+<p>A couple points are enforced by this method:</p>
+
+<ul>
+<li>There will always be a html, head, body, and title element.</li>
+<li>There will only be one html, head, body, and title element (if the user specifies more, then will be moved to the appropriate locations and merged).
+link and base elements are forced into the head.</li>
+</ul><p>You would use the method like so:</p>
+
+<pre><code>var dom = HTMLtoDOM("&lt;p&gt;Data: &lt;input disabled&gt;");
+dom.getElementsByTagName("body").length == 1
+dom.getElementsByTagName("p").length == 1
+</code></pre>
+
+<p>While this library doesn’t cover the full gamut of possible weirdness that HTML provides, it does handle a lot of the most obvious stuff. All of the following are accounted for:</p>
+
+<p><strong>Unclosed Tags:</strong></p>
+
+<pre><code>HTMLtoXML("&lt;p&gt;&lt;b&gt;Hello") == '&lt;p&gt;&lt;b&gt;Hello&lt;/b&gt;&lt;/p&gt;'
+</code></pre>
+
+<p><strong>Empty Elements:</strong></p>
+
+<pre><code>HTMLtoXML("&lt;img src=test.jpg&gt;") == '&lt;img src="test.jpg"/&gt;'
+</code></pre>
+
+<p><strong>Block vs. Inline Elements:</strong></p>
+
+<pre><code>HTMLtoXML("&lt;b&gt;Hello &lt;p&gt;John") == '&lt;b&gt;Hello &lt;/b&gt;&lt;p&gt;John&lt;/p&gt;'
+</code></pre>
+
+<p><strong>Self-closing Elements:</strong></p>
+
+<pre><code>HTMLtoXML("&lt;p&gt;Hello&lt;p&gt;World") == '&lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;World&lt;/p&gt;'
+</code></pre>
+
+<p><strong>Attributes Without Values:</strong></p>
+
+<pre><code>HTMLtoXML("&lt;input disabled&gt;") == '&lt;input disabled="disabled"/&gt;'
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Pure-javascript-html-parser maintained by <a href="https://github.com/blowsie">blowsie</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
