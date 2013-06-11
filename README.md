@@ -2,7 +2,7 @@
 
 Credit goes to John Resig for his [code](http://ejohn.org/blog/pure-javascript-html-parser/) written back in 2008.
 
-This code had been updated to fix several problems.
+This code has been updated to fix several problems.
 
 
 ### Demo ###
