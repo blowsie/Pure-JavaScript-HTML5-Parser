@@ -75,12 +75,18 @@ You would use the method like so:
 While this library doesn’t cover the full gamut of possible weirdness that HTML provides, it does handle a lot of the most obvious stuff. All of the following are accounted for:
 
 **Unclosed Tags:**
+
     HTMLtoXML("<p><b>Hello") == '<p><b>Hello</b></p>'
 **Empty Elements:**
+
     HTMLtoXML("<img src=test.jpg>") == '<img src="test.jpg"/>'
+
 **Block vs. Inline Elements:**
+
     HTMLtoXML("<b>Hello <p>John") == '<b>Hello </b><p>John</p>'
 **Self-closing Elements:**
+
     HTMLtoXML("<p>Hello<p>World") == '<p>Hello</p><p>World</p>'
 **Attributes Without Values:**
+
     HTMLtoXML("<input disabled>") == '<input disabled="disabled"/>'
