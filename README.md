@@ -1,11 +1,13 @@
 # Pure JavaScript HTML Parser #
 
+
+A working demo can be seen [here](http://htmlpreview.github.io/?https://github.com/blowsie/Pure-JavaScript-HTML-Parser/blob/master/demo.html).
+
 Credit goes to John Resig for his [code](http://ejohn.org/blog/pure-javascript-html-parser/) written back in 2008.
 
 This code has been updated to fix several problems.
 
 
-A working demo can be seen [here](http://htmlpreview.github.io/?https://github.com/blowsie/Pure-JavaScript-HTML-Parser/blob/master/demo.html).
 
 
 ## 4 Libraries in One! ##
