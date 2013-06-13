@@ -1,5 +1,5 @@
 /*
- * HTML Parser By Sam Blowes
+ * HTML5 Parser By Sam Blowes
  *
  * Designed for HTML5 documents
  *

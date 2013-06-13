@@ -1,4 +1,4 @@
-# Pure JavaScript HTML Parser #
+# Pure JavaScript HTML5 Parser #
 
 
 A working demo can be seen [here](http://htmlpreview.github.io/?https://github.com/blowsie/Pure-JavaScript-HTML-Parser/blob/master/demo.html).
