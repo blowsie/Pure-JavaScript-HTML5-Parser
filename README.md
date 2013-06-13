@@ -3,9 +3,9 @@
 
 A working demo can be seen [here](http://htmlpreview.github.io/?https://github.com/blowsie/Pure-JavaScript-HTML-Parser/blob/master/demo.html).
 
-Credit goes to John Resig for his [code](http://ejohn.org/blog/pure-javascript-html-parser/) written back in 2008.
+_Credit goes to John Resig for his [code](http://ejohn.org/blog/pure-javascript-html-parser/) written back in 2008 and Erik Arvidsson for his [code](http://erik.eae.net/simplehtmlparser/simplehtmlparser.js) written piror to that._
 
-This code has been updated to fix several problems.
+This code has been updated to work with HTML 5 to fix several problems.
 
 
 
@@ -25,7 +25,7 @@ Handles tag, text, and comments with callbacks. For example, let’s say you wan
         for ( var i = 0; i < attrs.length; i++ )
           results += " " + attrs[i].name + '="' + attrs[i].escaped + '"';
      
-        results += (unary ? "/" : "") + ">";
+        results += ">";
       },
       end: function( tag ) {
         results += "</" + tag + ">";
@@ -45,7 +45,7 @@ Handles tag, text, and comments with callbacks. For example, let’s say you wan
 Now, there’s no need to worry about implementing the above, since it’s included directly in the library, as well. Just feed in HTML and it spits back an XML string.
 
     var results = HTMLtoXML("<p>Data: <input disabled>")
-    results == '<p>Data: <input disabled="disabled"/></p>'
+    results == '<p>Data: <input disabled="disabled"></p>'
 
 
 ### DOM Builder ###
@@ -83,7 +83,7 @@ While this library doesn’t cover the full gamut of possible weirdness that HTM
     HTMLtoXML("<p><b>Hello") == '<p><b>Hello</b></p>'
 **Empty Elements:**
 
-    HTMLtoXML("<img src=test.jpg>") == '<img src="test.jpg"/>'
+    HTMLtoXML("<img src=test.jpg>") == '<img src="test.jpg">'
 
 **Block vs. Inline Elements:**
 
@@ -93,4 +93,4 @@ While this library doesn’t cover the full gamut of possible weirdness that HTM
     HTMLtoXML("<p>Hello<p>World") == '<p>Hello</p><p>World</p>'
 **Attributes Without Values:**
 
-    HTMLtoXML("<input disabled>") == '<input disabled="disabled"/>'
+    HTMLtoXML("<input disabled>") == '<input disabled="disabled">'

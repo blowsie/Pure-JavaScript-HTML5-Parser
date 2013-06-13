@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Pure JavaScript HTML Parse - Demo</title>
+	<title>Pure JavaScript HTML5 Parser - Demo</title>
 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 </head>
 <body>
@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="span12">
 				<div class="hero-unit">
-					<h1>Pure JavaScript HTML Parser</h1>
+					<h1>Pure JavaScript HTML5 Parser</h1>
 					<p>All-in-one: XML Serializer, DOM Builder, DOM Document Creator, A SAX-style API </p>
 					<p>
 						<a class="btn btn-primary btn-large" href="https://github.com/blowsie/Pure-JavaScript-HTML-Parser">Learn more</a>
@@ -38,7 +38,7 @@
 							<pre>HTMLtoXML("&lt;p>&lt;b>Hello") == '&lt;p>&lt;b>Hello&lt;/b>&lt;/p>'</pre>
 						</li>
 						<li>Empty Elements:
-							<pre>HTMLtoXML("&lt;img src=test.jpg>") == '&lt;img src="test.jpg"/>'</pre>
+							<pre>HTMLtoXML("&lt;img src=test.jpg>") == '&lt;img src="test.jpg">'</pre>
 						</li>
 						<li>Block vs. Inline Elements:
 							<pre>HTMLtoXML("&lt;b>Hello &lt;p>John") == '&lt;b>Hello &lt;/b>&lt;p>John&lt;/p>'</pre>
@@ -47,7 +47,7 @@
 							<pre>HTMLtoXML("&lt;p>Hello&lt;p>World") == '&lt;p>Hello&lt;/p>&lt;p>World&lt;/p>'</pre>
 						</li>
 						<li>Attributes Without Values:
-							<pre>HTMLtoXML("&lt;input disabled>") == '&lt;input disabled="disabled"/>'</pre>
+							<pre>HTMLtoXML("&lt;input disabled>") == '&lt;input disabled="disabled">'</pre>
 						</li>
 					</ul>
 					<br />
