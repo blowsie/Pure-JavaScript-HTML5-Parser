@@ -109,10 +109,8 @@
 				}
 
 			} else {
-				html = html.replace(new RegExp("(.*?)<\/" + stack.last() + "[^>]*>"), function (all, text) {
-					text = text.replace(/<!--(.*?)-->/g, "$1")
-						.replace(/<!\[CDATA\[(.*?)]]>/g, "$1");
-
+				html = html.replace(new RegExp("([\\s\\S]*?)<\/" + stack.last() + "[^>]*>"), function (all, text) {
+					text = text.replace(/<!--([\s\S]*?)-->|<!\[CDATA\[([\s\S]*?)]]>/g, "$1$2");
 					if (handler.chars)
 						handler.chars(text);
 
