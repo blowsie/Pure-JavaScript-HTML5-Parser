@@ -3,7 +3,7 @@
 
 A working demo can be seen [here](http://htmlpreview.github.io/?https://github.com/blowsie/Pure-JavaScript-HTML-Parser/blob/master/demo.html).
 
-_Credit goes to John Resig for his [code](http://ejohn.org/blog/pure-javascript-html-parser/) written back in 2008 and Erik Arvidsson for his [code](http://erik.eae.net/simplehtmlparser/simplehtmlparser.js) written piror to that._
+_Credit goes to John Resig for his [code](http://ejohn.org/blog/pure-javascript-html-parser/) written back in 2008 and Erik Arvidsson for his [code](http://erik.eae.net/simplehtmlparser/simplehtmlparser.js) written prior to that._
 
 This code has been updated to work with HTML 5 to fix several problems.
 
