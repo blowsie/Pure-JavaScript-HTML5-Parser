@@ -70,7 +70,7 @@
 				if (e) e.preventDefault();
 				if (typeof event != "undefined") event.returnValue = false;
 
-				output.value = HTMLtoXML(input.value);
+				output.value = HTMLtoXML(input.value) + "\r\n\r\n" + JSON.stringify(HTMLtoJSONML(input.value));
 				return false;
 			};
 		};

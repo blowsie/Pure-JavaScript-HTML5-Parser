@@ -357,6 +357,36 @@
 
 		return doc;
 	};
+	this.HTMLtoJSONML = function (html, nodes) {
+    nodes = nodes || ['div', []]
+		var elems = [], curParentNode = nodes;
+
+		HTMLParser(html, {
+			start: function (tag, attrs, unary) {
+        var elem = [tag, attrs]
+        curParentNode.push(elem)
+
+				if (!unary) {
+					elems.push(elem);
+					curParentNode = elem;
+				}
+			},
+			end: function (tag) {
+				elems.length -= 1;
+
+				// Init the new parentNode
+				curParentNode = elems[elems.length - 1];
+			},
+			chars: function (text) {
+				curParentNode.push(text)
+			},
+			comment: function (text) {
+				// create comment node
+			}
+		});
+
+		return nodes;
+	};
 
 	function makeMap(str) {
 		var obj = {}, items = str.split(",");
