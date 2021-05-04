@@ -219,6 +219,7 @@
 		}
 
 		function parseEndTag(tag, tagName) {
+			if(tagName!== undefined) tagName = tagName.toLowerCase();
 			// If no tag name is provided, clean shop
 			if (!tagName)
 				var pos = 0;
